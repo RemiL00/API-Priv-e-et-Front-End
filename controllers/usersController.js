@@ -91,11 +91,7 @@ exports.logIn = (req, res) => {
 				const decoded = await jwt.verify(token, process.env.SECRET_PHRASE_TOKEN)
 				console.log(decoded.user.id)
 
-				return res.json({
-					token,
-					_id: decoded.user.id,
-					userImg: decoded.user.imageUrl,
-				})
+				return res.json({ token, _id: decoded.user.id })
 			}
 		}
 	})

@@ -9,9 +9,8 @@ const {
 	getAllUsers,
 	getOneUserById,
 	signUp,
-	logIn,
 	checkUserAuth,
-	updateUserById,
+	logIn,
 } = require("../controllers/usersController")
 const { userValidation } = require("../middleware/userValidation")
 const { checkToken } = require("../middleware/checkToken")
@@ -29,15 +28,18 @@ usersRouter.get("/", getAllUsers)
 usersRouter.get("/:id", getOneUserById)
 
 // POST add a new user (sign up)
-usersRouter.post("/signup", userValidation, signUp)
+usersRouter.post("/", userValidation, signUp)
 
 usersRouter.post("/check", checkToken, checkUserAuth)
 
 // POST add a validate user (log in)
 usersRouter.post("/login", userValidation, logIn)
 
+// POST add a new user (sign up)
+usersRouter.post("/signup", userValidation, signUp)
+
 // PUT update a car based on the param id
-usersRouter.put("/:id", updateUserById)
+usersRouter.put("/:id", updateCarById)
 
 // DELETE delete a car based on the param id
 usersRouter.delete("/:id", deleteCarById)
